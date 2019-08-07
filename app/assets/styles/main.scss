@@ -1,0 +1,13 @@
+@import '../../../node_modules/normalize.scss/normalize.scss';
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+canvas[resize] {
+    width: 100%;
+    height: 100%;
+    background: black;
+    vertical-align: top;
+}
