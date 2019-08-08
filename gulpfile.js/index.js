@@ -5,7 +5,8 @@ const   autoprefixer    = require('autoprefixer'),
         bs              = require('browser-sync').create(),
         webpack         = require('webpack'),
         del             = require('del'),
-        fileList        = require('gulp-filelist');    
+        fileList        = require('gulp-filelist'),
+        rename          = require('gulp-rename');
 
 sass.compiler = require('node-sass');
 
@@ -42,11 +43,13 @@ function copy(){
     return src(paperScrptGlob).pipe(dest(tmpDir))
 }
 
-//  create .js list of filenames for mp3 sound files
+/*  create .json list of filenames for mp3 sound files
+    the filepaths are renamd to properly load in html file  */
 function listFiles(){
-    return src(audioGlob)
-    .pipe(fileList('mp3list.js'))
-    .pipe(dest(assetsDir + '/audio'))
+    return src(audioGlob, { base: '.'})
+    .pipe(rename({ dirname: 'assets/audio' }))
+    .pipe(fileList('mp3list.json'))
+    .pipe(dest(assetsDir + '/scripts'))
 };
 
 function bsReload(cb){

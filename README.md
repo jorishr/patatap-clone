@@ -12,11 +12,14 @@ A. DEV SETUP
 - GULP taskrunner for SASS and JS compilation with Webpack
 - both libraries are imported in the vendor.js
 - browserSync
+- gulp task to generate a json file with the paths of all sound files in the 
+assets dir
+- the local json file is loaded and read with a XMLHttpRequest
 
 B. FUNCTIONALITY
 
-- Each keypress triggers the drawing of an animated circle at a random point 
+- each keypress triggers the drawing of an animated circle at a random point 
 inside the viewport (responsive) 
-- Circles are generated with a random rgb color
-- Each keypress also triggers the playing of a sound randomly picked from an 
+- circles are generated with a random rgb color
+- each keypress also triggers the playing of a sound randomly picked from an 
 array of options.

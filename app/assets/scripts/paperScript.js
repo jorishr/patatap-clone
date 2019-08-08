@@ -1,8 +1,13 @@
 /* 	
+	#####
 	NOTES
+	#####
 	- both libaries howler.js and paper.js are imported in the vendor.js file
 	- consult the paper.js docs for methods and functions that are used
- 	
+	 
+	#############
+	FUNCTIONALITY
+	#############
 	- when key is pressed, a circle is genereated along random x/y coordinates
 	- a random sound is picked and played from an array of file(path)s 
 	- the coordinates of the render cirles have to be inside the viewport
@@ -10,35 +15,6 @@
 	- each new circle is pushed to an array that is used for animations
 */
 let circleArray= [];
-let soundFiles = [
-	"assets/audio/bubbles.mp3",
-	"assets/audio/clay.mp3",
-	"assets/audio/confetti.mp3",
-	"assets/audio/corona.mp3",
-	"assets/audio/dotted-spiral.mp3",
-	"assets/audio/flash-1.mp3",
-	"assets/audio/flash-2.mp3",
-	"assets/audio/flash-3.mp3",
-	"assets/audio/glimmer.mp3",
-	"assets/audio/moon.mp3",
-	"assets/audio/pinwheel.mp3",
-	"assets/audio/piston-1.mp3",
-	"assets/audio/piston-2.mp3",
-	"assets/audio/piston-3.mp3",
-	"assets/audio/prism-1.mp3",
-	"assets/audio/prism-2.mp3",
-	"assets/audio/prism-3.mp3",
-	"assets/audio/splits.mp3",
-	"assets/audio/squiggle.mp3",
-	"assets/audio/strike.mp3",
-	"assets/audio/suspension.mp3",
-	"assets/audio/timer.mp3",
-	"assets/audio/ufo.mp3",
-	"assets/audio/veil.mp3",
-	"assets/audio/wipe.mp3",
-	"assets/audio/zig-zag.mp3",
-];
-
 function onKeyDown(event) {
 	//	pick and play random sound with howler.js
 	pickSound();
@@ -69,14 +45,42 @@ function createRandomRgb(){
 	let blue 	= Math.floor(Math.random() * maxNum);
 	return randomRgb = `rgb(${red}, ${green}, ${blue})`;
 };
+/*  
+	######
+	SOUNDS
+	######
+	- pick a random soundfile from array of sound files
+	- the array is returned from a function that loads and reads the json file 
+	- the json was generated with a gulp tasks and contains the file paths		
+*/
+loadJson('assets/scripts/mp3list.json', function(response){
+	return soundFiles = JSON.parse(response);
+});
 
-//	pick random soundfile from array
 function pickSound(){
 	let num = Math.round(Math.random() * (soundFiles.length - 1));
 	return randomSound = soundFiles[num];
 };
+
+function loadJson(file, cb) {
+	let mp3list = new XMLHttpRequest();
+    mp3list.overrideMimeType("application/json");
+    mp3list.open("GET", file, true);
+    mp3list.onreadystatechange = function(){
+        if (this.readyState === 4 && this.status == 200){
+			/*	setTimeout 0 to avoid immediate execution of cb function, 
+			without it the return variable will be undefined	*/
+			setTimeout(() => {
+				cb(this.responseText);
+			}, 0)
+	    };
+	};
+	mp3list.send(null);
+};
 /* 
+	##########
 	ANIMATIONS
+	##########
 	- onFrame handler function is called up to 60 times a second by Paper.js
 	- on each new frame the hue changes with 1 unit
 	- on each new frame the scale reduces to 95% of the frame before
@@ -93,7 +97,6 @@ function onFrame(event){
 		};
 	};
 };
-
 
 /* 
 // fill the x and y axis with 10 circles every 100px
