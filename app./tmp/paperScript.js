@@ -14,7 +14,7 @@
 	- the circle radius is fixed at 300
 	- each new circle is pushed to an array that is used for animations
 */
-let circleArray = [];
+let circleArray= [];
 function onKeyDown(event) {
 	//	pick and play random sound with howler.js
 	pickSound();

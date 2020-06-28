@@ -6,7 +6,9 @@ const   autoprefixer    = require('autoprefixer'),
         webpack         = require('webpack'),
         del             = require('del'),
         fileList        = require('gulp-filelist'),
-        rename          = require('gulp-rename');
+        rename          = require('gulp-rename'),
+        build           = require('./build'),
+        productionServer= require('./prod');
 
 sass.compiler = require('node-sass');
 
@@ -71,3 +73,5 @@ function watchFiles(){
 exports.styles  = styles;
 exports.js      = jsCompile;
 exports.default = watchFiles;
+exports.build   = build;
+exports.production   = productionServer;
