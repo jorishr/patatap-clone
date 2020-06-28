@@ -18,6 +18,7 @@
 npm run dev
 npm run build
 npm run production
+//local production server
 ```
 
 ## Credits
