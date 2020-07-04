@@ -12,8 +12,10 @@ canvas[resize] {
     vertical-align: top;
 }
 
-body::before {
-        content: 'Press any key to start the show';
+body {
+ 
+    &::before {
+        content: 'Tap, click or press any key to start the show';
         position: absolute;
         top: 50%;
         left: 50%;
@@ -21,4 +23,15 @@ body::before {
         color: red;
         font-size: 1.25rem;
         z-index: 10;
+        text-align: center;
+    }
+
+    &.hide-msg {
+        
+        &::before {
+            opacity: 0;
+            display: none;
+        }
+    }
+
 }
