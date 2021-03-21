@@ -40,7 +40,7 @@
     "gulp-sass": "^4.0.2",
     "gulp-terser": "^1.2.0",
     "gulp-uglify": "^3.0.2",
-    "is-svg": "^4.2.0",
+    "is-svg": "^4.2.2",
     "node-sass": "^4.14.1",
     "postcss-svgo": "^4.0.2",
     "replace-in-file": "^6.1.0",
